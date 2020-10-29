@@ -4,11 +4,12 @@ import Main from './components/Main/Main';
 import store from './store';
 import _ from 'lodash';
 function App() {
-  const {contacts} = store.getState();
+  const contact = store.getState().contact.contacts;
+  const {user,activeUserId} = store.getState();
   return (
     <div className="App">
-      <Sidebar contacts={_.values(contacts)}></Sidebar>
-      <Main></Main>
+      <Sidebar contacts={_.values(contact)}></Sidebar>
+      <Main user={user} activeUserId={activeUserId}></Main>
     </div>
   );
 }
