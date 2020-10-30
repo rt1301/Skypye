@@ -6,8 +6,14 @@ export default function MessageInput({value}) {
     const handleChange = (e)=>{
         store.dispatch(setTypingValue(e.target.value));
     }
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        const state = store.getState();
+        const { typing, activeUserId } = state;
+        store.dispatch(sendMessage(typing,activeUserId));
+    }
     return (
-            <form className="Message">
+            <form onSubmit={handleSubmit} className="Message">
                 <input
                 className="Message__input"
                 onChange={handleChange}
