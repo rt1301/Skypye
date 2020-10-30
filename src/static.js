@@ -5,11 +5,11 @@ const _ = require("lodash"); // lodash is a utility lib for Javascript
 
 const users = generateUsers(10);
 export const contacts = _.mapKeys(users, "user_id");
-export const getMessages = messagesPerUser => {
+export const getMessages = (messagesPerUser) => {
   let messages = {};
-  _.forEach(users, user => {
+  _.forEach(users, (user) => {
     messages[user.user_id] = {
-      ..._.mapKeys(generateMsgs(messagesPerUser), "number")
+      ..._.mapKeys(generateMsgs(messagesPerUser), "number"),
     };
   });
   return messages;
@@ -21,7 +21,7 @@ export const state = {
   messages: getMessages(10),
   typing: "",
   contacts,
-  activeUserId: null
+  activeUserId: null,
 };
 
 /**
@@ -33,7 +33,7 @@ export function generateUser() {
     email: faker.internet.email(),
     profile_pic: faker.internet.avatar(),
     status: txtgen.sentence(),
-    user_id: shortid.generate()
+    user_id: shortid.generate(),
   };
 }
 /**
@@ -43,7 +43,7 @@ function generateMsg(number) {
   return {
     number,
     text: txtgen.sentence(),
-    is_user_msg: faker.random.boolean()
+    is_user_msg: faker.random.boolean(),
   };
 }
 /**
